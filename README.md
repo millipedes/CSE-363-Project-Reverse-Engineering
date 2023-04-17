@@ -4,11 +4,13 @@ This is the official repository for the CSE 363 project made by:
   - Luke Shankin
   - Nikki Sparacino
   - Cameron Savage
+
 Which relates to reverse engineering and analysis of binaries in the following
 languages:
   - C (Family)
   - Java
   - Python
+
 The code bases are numbered `01-PUT_NUMBER_HERE_LATER_ME_OR_SOMEONE_ELSE` and
 can be found in their respective sub directories in this project.
 
