@@ -1,0 +1,3 @@
+aaa
+s sym.main
+pdg
