@@ -1,4 +1,4 @@
-# :star: CSE 363 Reverse Engineering Tools Project
+# :collision: CSE 363 Reverse Engineering Tools Project
 This is the official repository for the CSE 363 project made by:
   - Matthew Lindeman
   - Luke Shankin
@@ -52,5 +52,8 @@ essential for being able to automate the process.
 
 # :running: Using Scripts to Generate Report
 
-# References
+# :page_facing_up: References
 The following git code repositories were used in the analysis of this project:
+  - [Luke Shankin's "Projects"](https://github.com/lukeshankin/Projects)
+  - [Matthew Lindeman's "Erdos Renyi Graph Visualiztion"](https://github.com/millipedes/Erdos-Renyi-Visualization)
+  - [Matthew Lindeman's "C Netpbm Graph Generator (With Context Free Grammar)"](https://github.com/millipedes/C-Netpbm-Function-Grapher)
