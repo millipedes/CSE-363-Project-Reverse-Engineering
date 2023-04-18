@@ -11,14 +11,13 @@
 \usepackage{mathrsfs}
 \usepackage{sectsty}
 \usepackage{soul}
-\usepackage{tikz}
 
 \newcommand{\n}{$\char`\\ n$}
 \newcommand{\tab}{$\quad$}
 \newcommand{\smalls}{\par\smallskip}
 \newcommand{\meds}{\par\medskip}
 \newcommand{\HRule}{\rule{\textwidth}{1pt}}
-\newcommand{\bigs}{\par\biggskip}
+\newcommand{\biigs}{\par\bigskip}
 \newcommand{\csfont}[1]{\fontfamily{cmtt}\selectfont #1}
 \newcommand{\XOR}{\mathbin{\char`\^}}
 \newcommand{\smalltitle}[1]{\textit{#1}}
@@ -58,5 +57,113 @@
         \vfill
     \end{center}
 \end{titlepage}
+
+\section*{1 Heap's Algorithm}
+  \begin{tabular}{c|l}
+    \hline
+    1 & {\csfont{ulong dbg.main(ulong argc, int64$\_$t argv)}} \\
+    2 & {\csfont{}} \\
+    3 & {\csfont{$\{$}} \\
+    4 & {\csfont{\tab \tab int32$\_$t iVar1;}} \\
+    5 & {\csfont{\tab \tab int64$\_$t arg1;}} \\
+    6 & {\csfont{\tab \tab ulong str;}} \\
+    7 & {\csfont{\tab \tab ulong var$\_$24h;}} \\
+    8 & {\csfont{\tab \tab ulong arr;}} \\
+    9 & {\csfont{\tab \tab uint32$\_$t i;}} \\
+    10 & {\csfont{\tab \tab int32$\_$t var$\_$8h;}} \\
+    11 & {\csfont{\tab \tab ulong val;}} \\
+    12 & {\csfont{\tab \tab }} \\
+    13 & {\csfont{\tab \tab // int main(int argc,char ** argv);}} \\
+    14 & {\csfont{\tab \tab val.$\_$0$\_$4$\_$ = 7;}} \\
+    15 & {\csfont{\tab \tab if (argc == 2) $\{$}} \\
+    16 & {\csfont{\tab \tab \tab \tab val.$\_$0$\_$4$\_$ = sym.imp.atoi(*(argv + 8));}} \\
+    17 & {\csfont{\tab \tab $\}$}} \\
+    18 & {\csfont{\tab \tab arg1 = sym.imp.calloc();}} \\
+    19 & {\csfont{\tab \tab for (var$\_$8h = 1; var$\_$8h $<$= val; var$\_$8h = var$\_$8h + 1) $\{$}} \\
+    20 & {\csfont{\tab \tab \tab \tab *(var$\_$8h * 4 + -4 + arg1) = var$\_$8h;}} \\
+    21 & {\csfont{\tab \tab $\}$}} \\
+    22 & {\csfont{\tab \tab iVar1 = dbg.fact(val);}} \\
+    23 & {\csfont{\tab \tab for (i = 0; i $<$ iVar1; i = i + 1) $\{$}} \\
+    24 & {\csfont{\tab \tab \tab \tab dbg.heaps(arg1, val, i);}} \\
+    25 & {\csfont{\tab \tab \tab \tab sym.imp.printf("$\%$d\t|");}} \\
+    26 & {\csfont{\tab \tab \tab \tab dbg.printarr(arg1, val);}} \\
+    27 & {\csfont{\tab \tab \tab \tab if (i $\%$ 6 == 5) $\{$}} \\
+    28 & {\csfont{\tab \tab \tab \tab \tab \tab sym.imp.putchar(10);}} \\
+    29 & {\csfont{\tab \tab \tab \tab $\}$}} \\
+    30 & {\csfont{\tab \tab \tab \tab if (i + ((i / 6 + (i $>$$>$ 0x1f) $>$$>$ 2) - (i $>$$>$ 0x1f)) * -0x18 == 0x17) $\{$}} \\
+    31 & {\csfont{\tab \tab \tab \tab \tab \tab sym.imp.puts(0x402009);}} \\
+    32 & {\csfont{\tab \tab \tab \tab $\}$}} \\
+    33 & {\csfont{\tab \tab $\}$}} \\
+    34 & {\csfont{\tab \tab sym.imp.free(arg1);}} \\
+    35 & {\csfont{\tab \tab return 0;}} \\
+    36 & {\csfont{$\}$}} \\
+    \hline
+  \end{tabular}
+  \biigs
+  Some insightful analysis here.
+  \biigs
+  \begin{tabular}{c|l}
+    \hline
+    1 & {\csfont{void dbg.swap(uint *arg1, uint *arg2)}} \\
+    2 & {\csfont{}} \\
+    3 & {\csfont{$\{$}} \\
+    4 & {\csfont{\tab \tab uint uVar1;}} \\
+    5 & {\csfont{\tab \tab ulong b;}} \\
+    6 & {\csfont{\tab \tab ulong a;}} \\
+    7 & {\csfont{\tab \tab ulong tmp;}} \\
+    8 & {\csfont{\tab \tab }} \\
+    9 & {\csfont{\tab \tab // void swap(int * a,int * b);}} \\
+    10 & {\csfont{\tab \tab uVar1 = *arg1;}} \\
+    11 & {\csfont{\tab \tab *arg1 = *arg2;}} \\
+    12 & {\csfont{\tab \tab *arg2 = uVar1;}} \\
+    13 & {\csfont{\tab \tab return;}} \\
+    14 & {\csfont{$\}$}} \\
+    \hline
+  \end{tabular}
+  \biigs
+  Some insightful analysis here.
+  \biigs
+  \begin{tabular}{c|l}
+    \hline
+    1 & {\csfont{void dbg.printarr(int64$\_$t arg1, ulong arg2)}} \\
+    2 & {\csfont{}} \\
+    3 & {\csfont{$\{$}} \\
+    4 & {\csfont{\tab \tab ulong arr;}} \\
+    5 & {\csfont{\tab \tab ulong i;}} \\
+    6 & {\csfont{\tab \tab }} \\
+    7 & {\csfont{\tab \tab // void printarr(int * arr,int length);}} \\
+    8 & {\csfont{\tab \tab for (i.$\_$0$\_$4$\_$ = 0; i $<$ arg2; i.$\_$0$\_$4$\_$ = i + 1) $\{$}} \\
+    9 & {\csfont{\tab \tab \tab \tab sym.imp.printf(0x40200b, *(arg1 + i * 4));}} \\
+    10 & {\csfont{\tab \tab $\}$}} \\
+    11 & {\csfont{\tab \tab sym.imp.putchar(10);}} \\
+    12 & {\csfont{\tab \tab return;}} \\
+    13 & {\csfont{$\}$}} \\
+    \hline
+  \end{tabular}
+  \biigs
+  Some insightful analysis here.
+  \biigs
+  \begin{tabular}{c|l}
+    \hline
+    1 & {\csfont{int32$\_$t dbg.fact(ulong arg1)}} \\
+    2 & {\csfont{}} \\
+    3 & {\csfont{$\{$}} \\
+    4 & {\csfont{\tab \tab int32$\_$t iVar1;}} \\
+    5 & {\csfont{\tab \tab ulong x;}} \\
+    6 & {\csfont{\tab \tab }} \\
+    7 & {\csfont{\tab \tab // int fact(int x);}} \\
+    8 & {\csfont{\tab \tab if (arg1 $<$ 1) $\{$}} \\
+    9 & {\csfont{\tab \tab \tab \tab iVar1 = 1;}} \\
+    10 & {\csfont{\tab \tab $\}$}} \\
+    11 & {\csfont{\tab \tab else $\{$}} \\
+    12 & {\csfont{\tab \tab \tab \tab iVar1 = dbg.fact(arg1 - 1);}} \\
+    13 & {\csfont{\tab \tab \tab \tab iVar1 = iVar1 * arg1;}} \\
+    14 & {\csfont{\tab \tab $\}$}} \\
+    15 & {\csfont{\tab \tab return iVar1;}} \\
+    16 & {\csfont{$\}$}} \\
+    \hline
+  \end{tabular}
+  \biigs
+  Some insightful analysis here.
 
 \end{document}

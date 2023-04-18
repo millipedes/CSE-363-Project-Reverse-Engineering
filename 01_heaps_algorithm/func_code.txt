@@ -1,0 +1,82 @@
+ulong dbg.main(ulong argc, int64_t argv)
+
+{
+    int32_t iVar1;
+    int64_t arg1;
+    ulong str;
+    ulong var_24h;
+    ulong arr;
+    uint32_t i;
+    int32_t var_8h;
+    ulong val;
+    
+    // int main(int argc,char ** argv);
+    val._0_4_ = 7;
+    if (argc == 2) {
+        val._0_4_ = sym.imp.atoi(*(argv + 8));
+    }
+    arg1 = sym.imp.calloc();
+    for (var_8h = 1; var_8h <= val; var_8h = var_8h + 1) {
+        *(var_8h * 4 + -4 + arg1) = var_8h;
+    }
+    iVar1 = dbg.fact(val);
+    for (i = 0; i < iVar1; i = i + 1) {
+        dbg.heaps(arg1, val, i);
+        sym.imp.printf("%d\t|");
+        dbg.printarr(arg1, val);
+        if (i % 6 == 5) {
+            sym.imp.putchar(10);
+        }
+        if (i + ((i / 6 + (i >> 0x1f) >> 2) - (i >> 0x1f)) * -0x18 == 0x17) {
+            sym.imp.puts(0x402009);
+        }
+    }
+    sym.imp.free(arg1);
+    return 0;
+}
+
+void dbg.swap(uint *arg1, uint *arg2)
+
+{
+    uint uVar1;
+    ulong b;
+    ulong a;
+    ulong tmp;
+    
+    // void swap(int * a,int * b);
+    uVar1 = *arg1;
+    *arg1 = *arg2;
+    *arg2 = uVar1;
+    return;
+}
+
+void dbg.printarr(int64_t arg1, ulong arg2)
+
+{
+    ulong arr;
+    ulong i;
+    
+    // void printarr(int * arr,int length);
+    for (i._0_4_ = 0; i < arg2; i._0_4_ = i + 1) {
+        sym.imp.printf(0x40200b, *(arg1 + i * 4));
+    }
+    sym.imp.putchar(10);
+    return;
+}
+
+int32_t dbg.fact(ulong arg1)
+
+{
+    int32_t iVar1;
+    ulong x;
+    
+    // int fact(int x);
+    if (arg1 < 1) {
+        iVar1 = 1;
+    }
+    else {
+        iVar1 = dbg.fact(arg1 - 1);
+        iVar1 = iVar1 * arg1;
+    }
+    return iVar1;
+}
