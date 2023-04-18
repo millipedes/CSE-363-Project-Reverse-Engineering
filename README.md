@@ -27,16 +27,26 @@ You will require the following packages:
   - file
   - zlib
   - libzip
+  - xclip
 And the following python package:
   - pyclip
 
 For distros with an apt package manager (i.e. Debian Ubuntu etc.):
 ```
 sudo apt update && sudo apt upgrade
-sudo apt install file zlib1g-dev xxhash libzip-dev
-sudo snap install radare2 --classic
+sudo apt install file zlib1g-dev xxhash libzip-dev xclip
 pip install pyclip
 ```
+
+Okay so unfortunately apt doesn't support `radare2` which has too many
+advantages to pass up, so we will need to execute:
+```
+cd ~/Documents/
+git clone https://github.com/radareorg/radare2
+cd radare2/
+./sys/install.sh
+```
+This may take a while, but it is downloading and compiling `radare2`.
 
 Note here that there is a `nix/` directory, this is a `nix-shell` script that
 will install the `xxHash`, `file`, `zlib`, and `libzip` dependencies in the
@@ -45,7 +55,6 @@ current shell session for NixOS users.
 Now that we have all of the dependencies, we can finally get to working with the
 decompiled functions:
 ```
-make
 r2 some_binary
 ```
 (Where some_binary is any binary, it just needs one as a command line arg or it
