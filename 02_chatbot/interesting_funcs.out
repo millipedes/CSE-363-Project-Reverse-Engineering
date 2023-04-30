@@ -1,0 +1,13 @@
+aaa
+s sym.main
+pdg
+s sym.print_words
+pdg
+s sym.search_faculty
+pdg
+s sym.search_course1
+pdg
+s sym.search_course2
+pdg
+s sym.search_subjects
+pdg

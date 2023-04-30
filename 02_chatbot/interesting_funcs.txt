@@ -1,0 +1,6 @@
+main
+print_words
+search_faculty
+search_course1
+search_course2
+search_subjects
