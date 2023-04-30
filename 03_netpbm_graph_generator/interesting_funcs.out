@@ -1,0 +1,25 @@
+aaa
+s sym.main
+pdg
+s sym.init_lexer
+pdg
+s sym.lex_number
+pdg
+s sym.decrement_number_ast
+pdg
+s sym.simplify_tree
+pdg
+s sym.binary_tree
+pdg
+s sym.add_token_to_list
+pdg
+s sym.reverse_stack
+pdg
+s sym.pop_token
+pdg
+s sym.write_canvas_to_file
+pdg
+s sym.get_mins_maxes
+pdg
+s sym.write_rectangle
+pdg

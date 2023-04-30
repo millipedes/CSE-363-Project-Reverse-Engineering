@@ -1,0 +1,12 @@
+main
+init_lexer
+lex_number
+decrement_number_ast
+simplify_tree
+binary_tree
+add_token_to_list
+reverse_stack
+pop_token
+write_canvas_to_file
+get_mins_maxes
+write_rectangle
