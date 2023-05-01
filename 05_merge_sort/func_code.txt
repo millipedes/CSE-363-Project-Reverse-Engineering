@@ -1,0 +1,142 @@
+void dbg.merge(int64_t arg1, ulong arg2, ulong arg3, ulong arg4)
+
+{
+    int64_t iVar1;
+    uint64_t uVar2;
+    uchar *puVar3;
+    uchar *puVar4;
+    int64_t in_FS_OFFSET;
+    uchar auStack152 [12];
+    int32_t r;
+    int32_t q;
+    int32_t p;
+    int64_t arr;
+    ulong i;
+    int32_t var_5ch;
+    int32_t var_58h;
+    int32_t k;
+    ulong n1;
+    int64_t var_48h;
+    uchar *L;
+    int64_t var_38h;
+    uchar *M;
+    int64_t canary;
+    ulong var_20h;
+    
+    arr = arg1;
+    p = arg2;
+    q = arg3;
+    r = arg4;
+    canary = *(in_FS_OFFSET + 0x28);
+    n1._0_4_ = (arg3 - arg2) + 1;
+    n1._4_4_ = arg4 - arg3;
+    var_48h = n1 + -1;
+    uVar2 = ((n1 * 4 + 0xfU) / 0x10) * 0x10;
+    for (puVar3 = auStack152; puVar3 != auStack152 + -(uVar2 & 0xfffffffffffff000); puVar3 = puVar3 + -0x1000) {
+        *(puVar3 + -8) = *(puVar3 + -8);
+    }
+    iVar1 = -(uVar2 & 0xfff);
+    puVar4 = puVar3 + iVar1;
+    if ((uVar2 & 0xfff) != 0) {
+        *(puVar3 + ((uVar2 & 0xfff) - 8) + iVar1) = *(puVar3 + ((uVar2 & 0xfff) - 8) + iVar1);
+    }
+    L = puVar3 + iVar1;
+    var_38h = n1._4_4_ + -1;
+    uVar2 = ((n1._4_4_ * 4 + 0xfU) / 0x10) * 0x10;
+    for (; puVar4 != puVar3 + (iVar1 - (uVar2 & 0xfffffffffffff000)); puVar4 = puVar4 + -0x1000) {
+        *(puVar4 + -8) = *(puVar4 + -8);
+    }
+    iVar1 = -(uVar2 & 0xfff);
+    M = puVar4 + iVar1;
+    if ((uVar2 & 0xfff) != 0) {
+        *(puVar4 + ((uVar2 & 0xfff) - 8) + iVar1) = *(puVar4 + ((uVar2 & 0xfff) - 8) + iVar1);
+    }
+    for (i._0_4_ = 0; i < n1; i._0_4_ = i + 1) {
+        *(L + i * 4) = *(arr + (i + p) * 4);
+    }
+    for (i._4_4_ = 0; i._4_4_ < n1._4_4_; i._4_4_ = i._4_4_ + 1) {
+        *(puVar4 + i._4_4_ * 4 + iVar1) = *(arr + (i._4_4_ + q + 1) * 4);
+    }
+    var_5ch = 0;
+    var_58h = 0;
+    k = p;
+    while ((var_5ch < n1 && (var_58h < n1._4_4_))) {
+        if (*(puVar4 + var_58h * 4 + iVar1) < *(L + var_5ch * 4)) {
+            *(k * 4 + arr) = *(puVar4 + var_58h * 4 + iVar1);
+            var_58h = var_58h + 1;
+        }
+        else {
+            *(k * 4 + arr) = *(L + var_5ch * 4);
+            var_5ch = var_5ch + 1;
+        }
+        k = k + 1;
+    }
+    for (; var_5ch < n1; var_5ch = var_5ch + 1) {
+        *(k * 4 + arr) = *(L + var_5ch * 4);
+        k = k + 1;
+    }
+    for (; var_58h < n1._4_4_; var_58h = var_58h + 1) {
+        *(k * 4 + arr) = *(puVar4 + var_58h * 4 + iVar1);
+        k = k + 1;
+    }
+    if (canary != *(in_FS_OFFSET + 0x28)) {
+        sym.imp.__stack_chk_fail();
+    }
+    return;
+}
+[0x0000129f]> s sym.sort
+[0x00001209]> pdg
+
+// WARNING: Variable defined which should be unmapped: mid
+
+void dbg.sort(ulong arg1, ulong arg2, ulong arg3)
+
+{
+    uint32_t uVar1;
+    ulong arr;
+    ulong mid;
+    
+    if (arg2 != arg3) {
+        if (arg3 - arg2 == 1) {
+            dbg.merge(arg1, arg2, arg2, arg3);
+        }
+        else {
+            uVar1 = (arg3 + arg2) / 2;
+            dbg.sort(arg1, arg2, uVar1);
+            dbg.sort(arg1, uVar1, arg3);
+            dbg.merge(arg1, arg2, uVar1, arg3);
+        }
+    }
+    return;
+}
+[0x00001209]> s sym.main
+[0x00001189]> pdg
+
+// WARNING: Could not reconcile some variable overlaps
+
+ulong dbg.main(void)
+
+{
+    ulong uVar1;
+    int64_t in_FS_OFFSET;
+    ulong arr;
+    uint var_18h;
+    uint var_14h;
+    uint var_10h;
+    int64_t canary;
+    
+    canary = *(in_FS_OFFSET + 0x28);
+    arr._0_4_ = 0xfffffffe;
+    arr._4_4_ = 0x2d;
+    var_18h = 0;
+    var_14h = 0xb;
+    var_10h = 0xfffffff7;
+    dbg.sort(&arr, 0, 4);
+    dbg.printArray(&arr, 5);
+    uVar1 = 0;
+    if (canary != *(in_FS_OFFSET + 0x28)) {
+        uVar1 = sym.imp.__stack_chk_fail();
+    }
+    return uVar1;
+}
+
