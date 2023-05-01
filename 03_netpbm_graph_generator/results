@@ -1,0 +1,13 @@
+Original:
+init_lexer - 9 lines; 264 bytes
+lex_number - 20 lines; 456 bytes
+reverse_stack - 12 lines; 366 bytes
+write_canvas_to_file - 12 lines; 416 bytes
+get_mins_maxes - 14 lines; 464 bytes
+
+Recompiled:
+init_lexer - 19 lines; 392 bytes
+lex_number - 35 lines; 780 bytes
+reverse_stack - 20 lines; 475 bytes
+write_canvas_to_file - 20 lines; 591 bytes
+get_mins_maxes - 31 lines; 724 bytes
