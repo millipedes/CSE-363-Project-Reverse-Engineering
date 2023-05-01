@@ -1,3 +1,63 @@
+\documentclass{report}
+
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{mathrsfs}
+\usepackage{sectsty}
+\usepackage{soul}
+
+\newcommand{\n}{$\char`\\ n$}
+\newcommand{\tab}{$\quad$}
+\newcommand{\smalls}{\par\smallskip}
+\newcommand{\meds}{\par\medskip}
+\newcommand{\HRule}{\rule{\textwidth}{1pt}}
+\newcommand{\biigs}{\par\bigskip}
+\newcommand{\csfont}[1]{\fontfamily{cmtt}\selectfont #1}
+\newcommand{\XOR}{\mathbin{\char`\^}}
+\newcommand{\smalltitle}[1]{\textit{#1}}
+
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{\thepage}
+\lhead{\textit{CSE 363: Final Project: Reverse Engineering}}
+\rfoot{}
+
+\begin{document}
+\begin{titlepage}
+    \begin{center}
+        \vspace{0.25cm}
+        \hrule
+        \vspace{0.1cm}
+        \hrule
+        \vspace{0.25cm}
+        {\LARGE{\textbf{CSE 363}}}
+        \par
+        \vspace{0.25cm}
+        {\large{\textbf{Final Project: Reverse Engineering}}}
+        \par
+        \vspace{0.25cm}
+        {\large{\textbf{New Mexico Institue of Mining and Technology}}}
+        \par
+        \vspace{0.25cm}
+        \textbf{Matthew C. Lindeman, Luke Shankin, Nikki Sparacino, Cameron
+        Savage}
+        \par
+        \vspace{0.25cm}
+        {\large{\textbf{Date \today}}}
+        \vspace{0.25cm}
+        \hrule
+        \vspace{0.1cm}
+        \hrule
+        \vfill
+    \end{center}
+\end{titlepage}
+
 \begin{tabular}{c|l}
 \hline
   1 & {\csfont{// WARNING: Removing unreachable block (ram,0x00001bcb)}} \\
@@ -65,7 +125,8 @@
   63 & {\csfont{\tab \tab \tab \tab iVar5 = *(arg2 + 0x14) - *(slot + 0x98) / *0x5090;}} \\
   64 & {\csfont{\tab \tab \tab \tab for (j = iVar5; k = iVar6,\tab j $<$ dVar7 + iVar3; j = j + 1) $\{$}} \\
   65 & {\csfont{\tab \tab \tab \tab \tab \tab for (; k $<$ dVar8 + iVar1; k = k + 1) $\{$}} \\
-  66 & {\csfont{\tab \tab \tab \tab \tab \tab \tab \tab if ((((*((k - iVar6) + (j - iVar5) * *(slot + 0x9c) + *(slot + 0xa8)) != '\0') $\&$$\&$ (0 $<$ j)) $\&$$\&$}} \\
+  66 & {\csfont{\tab \tab \tab \tab \tab \tab \tab \tab if ((((*((k - iVar6) +
+  (j - iVar5) * *(slot + 0x9c) + *(slot + 0xa8)) != '$\backslash$0') $\&$$\&$ (0 $<$ j)) $\&\&$}} \\
   67 & {\csfont{\tab \tab \tab \tab \tab \tab \tab \tab \tab \tab (j $<$ *(arg1 + 1))) $\&$$\&$ ((0 $<$ k - iVar4 $\&$$\&$ (k - iVar4 $<$ *(arg1 + 0xc))))) $\{$}} \\
   68 & {\csfont{\tab \tab \tab \tab \tab \tab \tab \tab \tab \tab dbg.change$\_$color(*((k - iVar4) * 8 + *(*arg1 + j * 8)), arg2[1]);}} \\
   69 & {\csfont{\tab \tab \tab \tab \tab \tab \tab \tab $\}$}} \\
@@ -162,7 +223,7 @@
   160 & {\csfont{\tab \tab \tab \tab iVar4 = *(arg2 + 0x18);}} \\
   161 & {\csfont{\tab \tab \tab \tab sym.imp.atan2(m);}} \\
   162 & {\csfont{\tab \tab \tab \tab sym.imp.cos();}} \\
-  163 & {\csfont{\tab \tab \tab \tab x$\_$start.$\_$0$\_$4$\_$ = (extraout$\_$XMM0$\_$Qa ^ *0x50a0) * iVar4 + iVar3;}} \\
+  163 & {\csfont{\tab \tab \tab \tab x$\_$start.$\_$0$\_$4$\_$ = (extraout$\_$XMM0$\_$Qa \string^ *0x50a0) * iVar4 + iVar3;}} \\
   164 & {\csfont{\tab \tab \tab \tab iVar3 = *(arg3 + 0x10);}} \\
   165 & {\csfont{\tab \tab \tab \tab iVar4 = *(arg3 + 0x18);}} \\
   166 & {\csfont{\tab \tab \tab \tab sym.imp.atan2(m);}} \\
@@ -179,7 +240,7 @@
   177 & {\csfont{\tab \tab \tab \tab iVar4 = *(arg3 + 0x18);}} \\
   178 & {\csfont{\tab \tab \tab \tab sym.imp.atan2(m);}} \\
   179 & {\csfont{\tab \tab \tab \tab sym.imp.cos();}} \\
-  180 & {\csfont{\tab \tab \tab \tab x$\_$start.$\_$4$\_$4$\_$ = (extraout$\_$XMM0$\_$Qa$\_$02 ^ *0x50a0) * iVar4 + iVar3;}} \\
+  180 & {\csfont{\tab \tab \tab \tab x$\_$start.$\_$4$\_$4$\_$ = (extraout$\_$XMM0$\_$Qa$\_$02 \string^ *0x50a0) * iVar4 + iVar3;}} \\
   181 & {\csfont{\tab \tab $\}$}} \\
   182 & {\csfont{\tab \tab iVar3 = x$\_$start;}} \\
   183 & {\csfont{\tab \tab if (x$\_$start.$\_$4$\_$4$\_$ $<$ x$\_$start) $\{$}} \\
@@ -206,4 +267,6 @@
   204 & {\csfont{\tab \tab return arg1;}} \\
   205 & {\csfont{$\}$}} \\
 \hline\end{tabular}
+
+\end{document}
 
