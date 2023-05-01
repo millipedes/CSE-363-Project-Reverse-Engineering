@@ -1,18 +1,3 @@
-ulong dbg.main(ulong argc, int64_t argv)
-
-{
-    ulong var_10h;
-    ulong var_4h;
-    
-    if (argc < 2) {
-        sym.imp.fwrite(_reloc.stderr, 0x2e);
-    // WARNING: Subroutine does not return
-        sym.imp.exit();
-    }
-    dbg.write_outputs_from_input_cfg_file(*(argv + 8));
-    return 0;
-}
-
 int64_t * dbg.init_lexer(ulong arg1)
 
 {
@@ -69,87 +54,6 @@ ulong dbg.lex_number(int64_t *arg1)
     return uVar4;
 }
 
-void dbg.decrement_number_ast(int64_t arg1)
-
-{
-    ulong arg1_00;
-    ulong abstree;
-    ulong result;
-    ulong r1;
-    
-    arg1_00 = sym.imp.calloc();
-    sym.imp.sprintf(*(arg1 + 0x10) - *0x94c0);
-    dbg.free_ast(arg1);
-    dbg.init_ast(arg1_00, 2);
-    return;
-}
-
-int64_t dbg.simplify_tree(int64_t arg1)
-
-{
-    int64_t iVar1;
-    int32_t iVar2;
-    ulong uVar3;
-    ulong abstree;
-    int32_t i;
-    ulong result;
-    
-    uVar3 = sym.imp.calloc();
-    iVar2 = dbg.subtree_all_numbers(arg1);
-    if (iVar2 == 0) {
-        dbg.evaluate_tree(arg1, 0, 1);
-        sym.imp.sprintf();
-        arg1 = dbg.init_ast(uVar3, 2);
-        sym.imp.free();
-    }
-    else {
-        for (i = 0; i < *(arg1 + 0x18); i = i + 1) {
-            iVar2 = dbg.subtree_all_numbers(*(*(arg1 + 8) + i * 8));
-            if (iVar2 == 0) {
-                iVar1 = *(arg1 + 8);
-                uVar3 = dbg.simplify_tree(*(*(arg1 + 8) + i * 8));
-                *(iVar1 + i * 8) = uVar3;
-            }
-            else if (*(*(arg1 + 8) + i * 8) != 0) {
-                iVar1 = *(arg1 + 8);
-                uVar3 = dbg.simplify_tree(*(*(arg1 + 8) + i * 8));
-                *(iVar1 + i * 8) = uVar3;
-            }
-        }
-        sym.imp.free();
-    }
-    return arg1;
-}
-
-int64_t dbg.binary_tree(int64_t arg1, ulong arg2, ulong arg3)
-
-{
-    ulong uVar1;
-    ulong right_child;
-    ulong left_child;
-    ulong parent;
-    
-    uVar1 = sym.imp.calloc();
-    *(arg1 + 8) = uVar1;
-    **(arg1 + 8) = arg2;
-    *(*(arg1 + 8) + 8) = arg3;
-    *(arg1 + 0x18) = 2;
-    return arg1;
-}
-
-int64_t dbg.add_token_to_list(ulong arg1, ulong arg2, ulong arg3)
-
-{
-    int64_t iVar1;
-    ulong in_RCX;
-    ulong addition;
-    ulong tok_list;
-    
-    iVar1 = sym.imp.realloc(in_RCX, (arg3 + 1) * 8);
-    *(arg3 * 8 + iVar1) = arg2;
-    return iVar1;
-}
-
 ulong dbg.reverse_stack(int64_t **arg1)
 
 {
@@ -169,25 +73,6 @@ ulong dbg.reverse_stack(int64_t **arg1)
         *arg1 = piVar2;
     }
     return fts;
-}
-
-int64_t dbg.pop_token(int64_t *arg1)
-
-{
-    ulong ts;
-    int64_t tmp;
-    
-    tmp = 0;
-    if (arg1 != NULL) {
-        if (arg1[1] != 0) {
-            tmp = arg1[1];
-        }
-        if (*arg1 != 0) {
-            dbg.free_token(*arg1);
-        }
-        sym.imp.free();
-    }
-    return tmp;
 }
 
 void dbg.write_canvas_to_file(ulong arg1, int64_t *arg2)
@@ -242,21 +127,3 @@ int32_t dbg.get_mins_maxes(ulong arg1, int64_t **arg2)
     }
     return result;
 }
-
-void dbg.write_rectangle(int64_t *arg1, ulong arg2, ulong arg3, ulong arg4, ulong arg5, ulong arg6)
-
-{
-    ulong col;
-    ulong can;
-    ulong i;
-    
-    for (i._0_4_ = arg3 - arg4 / 2; i <= arg3 + arg4 / 2; i._0_4_ = i + 1) {
-        for (i._4_4_ = arg2 - arg5 / 2; i._4_4_ <= arg2 + arg5 / 2; i._4_4_ = i._4_4_ + 1) {
-            if ((((-1 < i) && (-1 < i._4_4_)) && (i < *(arg1 + 1))) && (i._4_4_ < *(arg1 + 0xc))) {
-                dbg.change_color(**(*(*arg1 + i * 8) + i._4_4_ * 8), arg6);
-            }
-        }
-    }
-    return;
-}
-
