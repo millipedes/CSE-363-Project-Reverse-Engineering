@@ -11,7 +11,7 @@ languages:
   - Java
   - Python
 
-The code bases are numbered `01-PUT_NUMBER_HERE_LATER_ME_OR_SOMEONE_ELSE` and
+The code bases are numbered `01-05` and
 can be found in their respective sub directories in this project.
 
 The scripts used to automate this analysis can be found under the `scripts`
@@ -93,7 +93,7 @@ printarr
 fact
 ```
 Note that this is all of the functions in this project, but for larger programs
-we might not want to analyze _all_ of the functions. So now out script will
+we might not want to analyze _all_ of the functions. So now our script will
 translate these functions to the proper input to `radare2`:
 ```
 python ../scripts/r2inputs.py -f interesting_funcs.txt
