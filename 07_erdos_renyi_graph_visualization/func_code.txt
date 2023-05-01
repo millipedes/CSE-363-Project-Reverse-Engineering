@@ -1,0 +1,205 @@
+// WARNING: Removing unreachable block (ram,0x00001bcb)
+// WARNING: Removing unreachable block (ram,0x00001b37)
+// WARNING: Removing unreachable block (ram,0x00001b82)
+// WARNING: Removing unreachable block (ram,0x00001c16)
+// WARNING: Could not reconcile some variable overlaps
+
+int64_t * dbg.write_node(int64_t *arg1, int64_t *arg2, ulong arg3, ulong arg4)
+
+{
+    int32_t iVar1;
+    int32_t iVar2;
+    int32_t iVar3;
+    int32_t iVar4;
+    int32_t iVar5;
+    int32_t iVar6;
+    int64_t in_FS_OFFSET;
+    double dVar7;
+    double dVar8;
+    ulong path_to_font;
+    ulong the_node;
+    ulong the_canvas;
+    ulong x;
+    int32_t err;
+    int32_t i;
+    int32_t j;
+    int32_t k;
+    ulong white_len;
+    ulong ft;
+    int64_t face;
+    int64_t slot;
+    int64_t canary;
+    
+    canary = *(in_FS_OFFSET + 0x28);
+    x._0_4_ = 0;
+    x._4_4_ = *(arg2 + 3);
+    err = *(arg2 + 3) * -2 + 3;
+    sym.imp.FT_Init_FreeType(&ft);
+    sym.imp.FT_New_Face(ft, arg3, 0);
+    sym.imp.FT_Set_Pixel_Sizes(face, 0, arg4);
+    iVar2 = sym.imp.strnlen(*arg2, 0x80);
+    dbg.update_points(arg1, arg2, 0, x._4_4_);
+    while (x <= x._4_4_) {
+        x._0_4_ = x + 1;
+        if (err < 1) {
+            iVar3 = x * 4 + 6;
+        }
+        else {
+            x._4_4_ = x._4_4_ - 1;
+            iVar3 = (x - x._4_4_) * 4 + 10;
+        }
+        err = err + iVar3;
+        dbg.update_points(arg1, arg2, x, x._4_4_);
+    }
+    for (i = 0; i < iVar2; i = i + 1) {
+        sym.imp.FT_Load_Char(face, *(i + *arg2), 4);
+        slot = *(face + 0x98);
+        iVar3 = *(arg2 + 0x14);
+        dVar7 = *(slot + 0x98) / *0x5090;
+        iVar6 = *(arg2 + 2) - *(slot + 0x9c) / *0x5090;
+        iVar1 = *(arg2 + 2);
+        dVar8 = *(slot + 0x9c) / *0x5090;
+        iVar4 = *(slot + 0x9c) * (iVar2 / 2 - i);
+        iVar5 = *(arg2 + 0x14) - *(slot + 0x98) / *0x5090;
+        for (j = iVar5; k = iVar6,  j < dVar7 + iVar3; j = j + 1) {
+            for (; k < dVar8 + iVar1; k = k + 1) {
+                if ((((*((k - iVar6) + (j - iVar5) * *(slot + 0x9c) + *(slot + 0xa8)) != '\0') && (0 < j)) &&
+                    (j < *(arg1 + 1))) && ((0 < k - iVar4 && (k - iVar4 < *(arg1 + 0xc))))) {
+                    dbg.change_color(*((k - iVar4) * 8 + *(*arg1 + j * 8)), arg2[1]);
+                }
+            }
+        }
+    }
+    sym.imp.FT_Done_Face(face);
+    sym.imp.FT_Done_FreeType(ft);
+    if (canary != *(in_FS_OFFSET + 0x28)) {
+        arg1 = sym.imp.__stack_chk_fail();
+    }
+    return arg1;
+}
+
+int64_t * dbg.update_points(int64_t *arg1, int64_t arg2, ulong arg3, ulong arg4)
+
+{
+    ulong the_node;
+    ulong the_canvas;
+    
+    if ((((*(arg2 + 0x14) + arg4 < *(arg1 + 1)) && (0 < arg4 + *(arg2 + 0x14))) &&
+        (*(arg2 + 0x10) + arg3 < *(arg1 + 0xc))) && (0 < arg3 + *(arg2 + 0x10))) {
+        dbg.change_color(*((arg3 + *(arg2 + 0x10)) * 8 + *((arg4 + *(arg2 + 0x14)) * 8 + *arg1)), *(arg2 + 8));
+    }
+    if (((*(arg2 + 0x14) - arg4 < *(arg1 + 1)) && (0 < *(arg2 + 0x14) - arg4)) &&
+       ((*(arg2 + 0x10) + arg3 < *(arg1 + 0xc) && (0 < arg3 + *(arg2 + 0x10))))) {
+        dbg.change_color(*((arg3 + *(arg2 + 0x10)) * 8 + *((*(arg2 + 0x14) - arg4) * 8 + *arg1)), *(arg2 + 8));
+    }
+    if (((*(arg2 + 0x14) + arg4 < *(arg1 + 1)) && (0 < arg4 + *(arg2 + 0x14))) &&
+       ((*(arg2 + 0x10) - arg3 < *(arg1 + 0xc) && (0 < *(arg2 + 0x10) - arg3)))) {
+        dbg.change_color(*((*(arg2 + 0x10) - arg3) * 8 + *((arg4 + *(arg2 + 0x14)) * 8 + *arg1)), *(arg2 + 8));
+    }
+    if ((((*(arg2 + 0x14) - arg4 < *(arg1 + 1)) && (0 < *(arg2 + 0x14) - arg4)) &&
+        (*(arg2 + 0x10) - arg3 < *(arg1 + 0xc))) && (0 < *(arg2 + 0x10) - arg3)) {
+        dbg.change_color(*((*(arg2 + 0x10) - arg3) * 8 + *((*(arg2 + 0x14) - arg4) * 8 + *arg1)), *(arg2 + 8));
+    }
+    if (((*(arg2 + 0x14) + arg3 < *(arg1 + 1)) && (0 < arg3 + *(arg2 + 0x14))) &&
+       ((*(arg2 + 0x10) + arg4 < *(arg1 + 0xc) && (0 < arg4 + *(arg2 + 0x10))))) {
+        dbg.change_color(*((arg4 + *(arg2 + 0x10)) * 8 + *((arg3 + *(arg2 + 0x14)) * 8 + *arg1)), *(arg2 + 8));
+    }
+    if (((*(arg2 + 0x14) - arg3 < *(arg1 + 1)) && (0 < *(arg2 + 0x14) - arg3)) &&
+       ((*(arg2 + 0x10) + arg4 < *(arg1 + 0xc) && (0 < arg4 + *(arg2 + 0x10))))) {
+        dbg.change_color(*((arg4 + *(arg2 + 0x10)) * 8 + *((*(arg2 + 0x14) - arg3) * 8 + *arg1)), *(arg2 + 8));
+    }
+    if ((((*(arg2 + 0x14) + arg3 < *(arg1 + 1)) && (0 < arg3 + *(arg2 + 0x14))) &&
+        (*(arg2 + 0x10) - arg4 < *(arg1 + 0xc))) && (0 < *(arg2 + 0x10) - arg4)) {
+        dbg.change_color(*((*(arg2 + 0x10) - arg4) * 8 + *((arg3 + *(arg2 + 0x14)) * 8 + *arg1)), *(arg2 + 8));
+    }
+    if (((*(arg2 + 0x14) - arg3 < *(arg1 + 1)) && (0 < *(arg2 + 0x14) - arg3)) &&
+       ((*(arg2 + 0x10) - arg4 < *(arg1 + 0xc) && (0 < *(arg2 + 0x10) - arg4)))) {
+        dbg.change_color(*((*(arg2 + 0x10) - arg4) * 8 + *((*(arg2 + 0x14) - arg3) * 8 + *arg1)), *(arg2 + 8));
+    }
+    return arg1;
+}
+
+// WARNING: Could not reconcile some variable overlaps
+
+int64_t * dbg.connect_node(ulong noname_0, ulong noname_1, ulong arg9, ulong arg10, ulong noname_4, ulong noname_5, 
+                          ulong noname_6, ulong noname_7, int64_t *arg1, int64_t arg2, int64_t arg3, ulong arg4)
+
+{
+    int32_t iVar1;
+    int32_t iVar2;
+    int32_t iVar3;
+    int32_t iVar4;
+    uint64_t extraout_XMM0_Qa;
+    double extraout_XMM0_Qa_00;
+    double extraout_XMM0_Qa_01;
+    uint64_t extraout_XMM0_Qa_02;
+    ulong var_58h;
+    ulong var_50h;
+    ulong child;
+    ulong parent;
+    ulong the_canvas;
+    ulong x_start;
+    int32_t var_1ch;
+    int32_t var_18h;
+    int32_t j;
+    ulong b;
+    double m;
+    
+    if (*(arg2 + 0x10) == *(arg3 + 0x10)) {
+        m = *(arg2 + 0x10);
+    }
+    else {
+        m = (*(arg2 + 0x14) - *(arg3 + 0x14)) / (*(arg2 + 0x10) - *(arg3 + 0x10));
+    }
+    iVar1 = *(arg2 + 0x14);
+    iVar2 = *(arg2 + 0x10);
+    x_start._0_4_ = 0;
+    x_start._4_4_ = 0;
+    if (*(arg2 + 0x10) < *(arg3 + 0x10)) {
+        iVar3 = *(arg2 + 0x10);
+        iVar4 = *(arg2 + 0x18);
+        sym.imp.atan2(m);
+        sym.imp.cos();
+        x_start._0_4_ = (extraout_XMM0_Qa ^ *0x50a0) * iVar4 + iVar3;
+        iVar3 = *(arg3 + 0x10);
+        iVar4 = *(arg3 + 0x18);
+        sym.imp.atan2(m);
+        sym.imp.cos();
+        x_start._4_4_ = extraout_XMM0_Qa_00 * iVar4 + iVar3;
+    }
+    else if (*(arg3 + 0x10) < *(arg2 + 0x10)) {
+        iVar3 = *(arg2 + 0x10);
+        iVar4 = *(arg2 + 0x18);
+        sym.imp.atan2(m);
+        sym.imp.cos();
+        x_start._0_4_ = extraout_XMM0_Qa_01 * iVar4 + iVar3;
+        iVar3 = *(arg3 + 0x10);
+        iVar4 = *(arg3 + 0x18);
+        sym.imp.atan2(m);
+        sym.imp.cos();
+        x_start._4_4_ = (extraout_XMM0_Qa_02 ^ *0x50a0) * iVar4 + iVar3;
+    }
+    iVar3 = x_start;
+    if (x_start._4_4_ < x_start) {
+        x_start._0_4_ = x_start._4_4_;
+        x_start._4_4_ = iVar3;
+    }
+    if ((x_start == x_start._4_4_) && (*(arg2 + 0x14) < *(arg3 + 0x14))) {
+        for (var_1ch = *(arg2 + 0x18) + *(arg2 + 0x14); var_1ch < *(arg3 + 0x14) - *(arg3 + 0x18); var_1ch = var_1ch + 1
+            ) {
+            dbg.change_color(*(*(arg2 + 0x10) * 8 + *(*arg1 + var_1ch * 8)), *(arg2 + 8));
+        }
+    }
+    else if ((x_start == x_start._4_4_) && (*(arg3 + 0x14) < *(arg2 + 0x14))) {
+        for (var_18h = *(arg3 + 0x18) + *(arg3 + 0x14); var_18h < *(arg2 + 0x14) - *(arg2 + 0x18); var_18h = var_18h + 1
+            ) {
+            dbg.change_color(*(*(arg2 + 0x10) * 8 + *(*arg1 + var_18h * 8)), *(arg2 + 8));
+        }
+    }
+    else {
+        for (j = x_start; j <= x_start._4_4_; j = j + 1) {
+            dbg.change_color(*(*(*arg1 + ((iVar1 - iVar2 * m) + j * m) * 8) + j * 8), *(arg2 + 8));
+        }
+    }
+    return arg1;
+}
